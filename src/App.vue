@@ -1,8 +1,7 @@
 <script setup>
-import LoginPage from "@/views/login/index.vue"
 </script>
 <template>
-  <LoginPage/>
+ <router-view />
 </template>
 
 <style lang="scss" scoped></style>
