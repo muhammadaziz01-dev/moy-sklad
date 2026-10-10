@@ -15,8 +15,8 @@
 
 <script setup>
 import { useRouter } from "vue-router";
-import arrowLeft from "../../assets/arrow-left.svg";
-import logautIcon from "../../assets/box-arrow-right.svg";
+import arrowLeft from "@/assets/arrow-left.svg";
+import logautIcon from "@/assets/box-arrow-right.svg";
 
 const router = useRouter();
 
@@ -24,9 +24,9 @@ const allprops = defineProps({
   props: Object,
 });
 
-// const pushRouter = () => {
-//   router.push(allprops?.props?.ruot);
-// };
+const pushRouter = () => {
+  router.push(allprops?.props?.ruot);
+};
 
 const handleLogout = () => {
   sessionStorage.removeItem("userRole");

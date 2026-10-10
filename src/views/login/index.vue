@@ -17,10 +17,17 @@ const testDataUsers =[
     },
     {
         id:8,
-        name:"Козимжон",
-        password : "220186",
+        name:"Testbek",
+        password : "111111",
         region : "Ош",
         rol: "mananger"
+    },
+    {
+        id:8,
+        name:"Testali",
+        password : "222222",
+        region : "Ош",
+        rol: "agent"
     },
 ]
 
