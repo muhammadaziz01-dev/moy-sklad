@@ -1,4 +1,6 @@
 <script setup>
+import RTP from "@/assets/rtp-logo.png";
+import VALFEX from "@/assets/valfex-logo.png";
 import Navbar from "@/components/header/index.vue";
 
 const propsDate = {
@@ -10,7 +12,20 @@ const propsDate = {
 
 <template>
   <Navbar :props="propsDate" />
-  <div>Praducts</div>
+  <div class="products">
+    <nav class="products--navbar">
+      <router-link to="/products">
+        <img :src="RTP" alt="RTP logo" />
+      </router-link>
+      <router-link to="/products/valfex">
+        <img :src="VALFEX" alt="Valfex logo" />
+      </router-link>
+      <!-- <router-link to="/products/tim">
+        <img :src="TIM" alt="logo tim" />
+      </router-link> -->
+    </nav>
+    <router-view></router-view>
+  </div>
 </template>
 
 

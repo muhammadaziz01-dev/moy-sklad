@@ -10,6 +10,10 @@ import Praducts from "@/views/products/index.vue"
 import Pradaja from "@/views/pradaja/index.vue"
 import Ostatok from "@/views/ostatok/index.vue"
 import Agents from "@/views/agents/index.vue"
+import Zayafca from "@/views/zayafca/index.vue"
+import ProductRTP from "@/views/products/rtp/index.vue"
+import ProductValfe from "@/views/products/valfex/index.vue"
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -53,6 +57,18 @@ const router = createRouter({
       path: "/products",
       name: "Praducts",
       component: Praducts,
+      children: [
+        {
+          path: "",
+          name: "rtp",
+          component: ProductRTP,
+        },
+        {
+          path: "valfex",
+          name: "valfex",
+          component: ProductValfe,
+        },
+      ]
     },
     {
       path: "/pradaja",
@@ -68,6 +84,11 @@ const router = createRouter({
       path: "/agents",
       name: "Agents",
       component: Agents,
+    },
+    {
+      path: "/zayafca",
+      name: "Zayafca",
+      component: Zayafca,
     },
 
   ],

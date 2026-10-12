@@ -34,7 +34,7 @@
         <p>Продажа</p>
       </div>
 
-      <div class="wrapper--menu--card" @click="pushRouter(`/pradaja`)" >
+      <div class="wrapper--menu--card" @click="pushRouter(`/zayafca`)" >
         <img :src="Zayafca" alt="truck icon" />
         <p>Заявка</p>
       </div>
@@ -97,7 +97,7 @@
         <p>Продукты</p>
       </div>
 
-      <div class="wrapper--menu--card" @click="pushRouter(`/pradaja`)" >
+      <div class="wrapper--menu--card" @click="pushRouter(`/zayafca`)" >
         <img :src="Zayafca" alt="truck icon" />
         <p>Заявка</p>
       </div>
