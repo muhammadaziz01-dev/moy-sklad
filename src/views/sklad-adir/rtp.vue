@@ -1,0 +1,179 @@
+<script setup>
+import {
+  allDataRTPAdir,
+  productsCount,
+  totalResidualValue,
+} from "@/constants/data/sklad-adir/data-rtp.js";
+import InfoCard from "@/components/cards/infoCard/index.vue";
+
+const userRole = localStorage.getItem("userRole");
+
+
+</script>
+
+<template>
+  <div class="wrapper">
+    <h3 class="wrapper--title"><span>Rosturplast</span> продукты</h3>
+    <InfoCard :count="productsCount" :total="totalResidualValue" />
+    <div class="wrapper--parent-card">
+      <div
+        class="wrapper--parent-card--card"
+        v-for="item in allDataRTPAdir"
+        :key="item.id"
+      >
+        <img :src="item.img" alt="Truba PPR" class="wrapper--parent-card--card--img" />
+        <div class="wrapper--parent-card--card--wrapper-title">
+          <p>{{ item.name }}</p>
+          <ul class="wrapper--parent-card--card--wrapper-title--property">
+            <li class="wrapper--parent-card--card--wrapper-title--property__item">
+              <div class="wrapper--parent-card--card--wrapper-title--property__text">
+                Бренд
+              </div>
+              <div
+                class="wrapper--parent-card--card--wrapper-title--property__empty"
+              ></div>
+              <div class="wrapper--parent-card--card--wrapper-title--property__text">
+                {{ item.brand }}
+              </div>
+            </li>
+            <li class="wrapper--parent-card--card--wrapper-title--property__item">
+              <div class="wrapper--parent-card--card--wrapper-title--property__text">
+                Количество
+              </div>
+              <div
+                class="wrapper--parent-card--card--wrapper-title--property__empty"
+              ></div>
+              <div class="wrapper--parent-card--card--wrapper-title--property__text">
+                {{ item?.quantity }}
+              </div>
+            </li>
+            <li class="wrapper--parent-card--card--wrapper-title--property__item">
+              <div class="wrapper--parent-card--card--wrapper-title--property__text">
+                Цена
+              </div>
+              <div
+                class="wrapper--parent-card--card--wrapper-title--property__empty"
+              ></div>
+              <div class="wrapper--parent-card--card--wrapper-title--property__text">
+                {{ item?.price }} сом
+              </div>
+            </li>
+            <li class="wrapper--parent-card--card--wrapper-title--property__item">
+              <div class="wrapper--parent-card--card--wrapper-title--property__text">
+                общий остаток
+              </div>
+              <div
+                class="wrapper--parent-card--card--wrapper-title--property__empty"
+              ></div>
+              <div class="wrapper--parent-card--card--wrapper-title--property__text">
+                {{ item?.allResidual + " " + item?.unit }}
+              </div>
+            </li>
+            <li
+              class="wrapper--parent-card--card--wrapper-title--property__item"
+              v-if="userRole !== 'agent'"
+            >
+              <div class="wrapper--parent-card--card--wrapper-title--property__text">
+                Оставшаяся сумма
+              </div>
+              <div
+                class="wrapper--parent-card--card--wrapper-title--property__empty"
+              ></div>
+              <div class="wrapper--parent-card--card--wrapper-title--property__text">
+                {{ item?.residualValue }} сом
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<style lang="scss" scoped>
+.wrapper {
+  &--title {
+    text-align: center;
+    padding-bottom: 20px;
+
+    span {
+      color: #224386;
+    }
+  }
+
+  &--parent-card {
+        max-width: 410px;
+        // background-color: #224386;
+        display: grid;
+        grid-template-columns: auto auto;
+        gap: 10px;
+        padding: 5px;
+        margin-top: 10px;
+
+
+        &--card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; 
+            height: 100%; 
+            padding: 10px 7px 15px 7px;
+            border-radius: 10px;
+            box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.2);
+
+            &--img-container {
+                width: 100%;
+                height: 150px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+            }
+
+            &--img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain; 
+            }
+
+            &--wrapper-title {
+                p {
+
+                    font-size: 12px;
+                    font-weight: 500;
+                    text-align: center;
+                    padding-bottom: 5px;
+                    color: #0e0f0f;
+                }
+
+
+                &--property {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 4px;
+                }
+
+                &--property__item {
+                    list-style: none;
+                    margin: 0;
+                    padding: 0;
+                    display: flex;
+                    gap: 4px;
+                }
+
+                &--property__text {
+                    color: #0e0f0f;
+                    font-size: 10px;
+                    font-weight: 400;
+                }
+
+                &--property__empty {
+                    border-bottom: 1px dashed #0e0f0f;
+                    flex: 1 1 auto;
+                }
+            }
+
+
+        }
+    }
+}
+</style>
