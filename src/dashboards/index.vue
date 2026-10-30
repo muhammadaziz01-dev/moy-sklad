@@ -122,13 +122,13 @@
 <script setup>
 import Navbar from "@/components/header/index.vue";
 import AgentsImg from "@/assets/users.svg";
-import skladAdir from "@/assets/skladAdir.svg";
 import Truck from "@/assets/truck.svg"
 import IconAstatok from "@/assets/iconAstatok.svg"
 import { useRouter } from "vue-router";
 import Person from "@/assets/person.svg"
 import Settings from "@/assets/gear.svg"
 import Product from "@/assets/praduct.svg";
+import skladAdir from "@/assets/skladAdir.svg";
 import Sklad3 from "@/assets/sklad1.png";
 import Sklad2 from "@/assets/sklad2.png";
 import Zayafca from "@/assets/zayafca.svg";
