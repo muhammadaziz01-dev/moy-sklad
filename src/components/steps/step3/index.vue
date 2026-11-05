@@ -69,10 +69,10 @@ async function downloadWord() {
   loadingWord.value = true
   try {
     await generateNakladnoyWord(buildWordData())
-    message.success("Fayl yuklab olindi!")
+    message.success("Файл загружен!")
   } catch (e) {
     console.error(e)
-    message.error("Xato yuz berdi")
+    message.error("Произошла ошибка.")
   } finally {
     loadingWord.value = false
   }
@@ -93,7 +93,7 @@ async function confirmOrder() {
     router.push("/menu")
   } catch (e) {
     console.error(e)
-    message.error("Xato yuz berdi")
+    message.error("Произошла ошибка.")
     loadingConfirm.value = false
   }
 }
@@ -111,7 +111,7 @@ async function confirmOrder() {
     <!-- Klient ma'lumoti -->
     <div class="step3__client" v-if="store.selectedClient">
       <div class="step3__client__row">
-        <span class="step3__client__row__label">Клиент:</span>
+        <span class="step3__client__row__label">Торговый агент:</span>
         <span class="step3__client__row__value">{{ store.selectedClient.fulName }}</span>
       </div>
       <div class="step3__client__row">
@@ -123,7 +123,7 @@ async function confirmOrder() {
         <span class="step3__client__row__value">{{ store.selectedClient.phone }}</span>
       </div>
       <div class="step3__client__row">
-        <span class="step3__client__row__label">Сана:</span>
+        <span class="step3__client__row__label">Дата:</span>
         <span class="step3__client__row__value">{{ today }}</span>
       </div>
     </div>
@@ -160,11 +160,11 @@ async function confirmOrder() {
     <!-- Jami -->
     <div class="step3__totals">
       <div class="step3__totals__row">
-        <span>Жами позиция:</span>
-        <span>{{ store.totalItems }} тур</span>
+        <span>Общее количество:</span>
+        <span>{{ store.totalItems }} позиций</span>
       </div>
       <div class="step3__totals__row total">
-        <span>Жами сумма:</span>
+        <span>Общая сумма:</span>
         <span>{{ fmt(store.totalAmount) }} сом</span>
       </div>
     </div>
@@ -175,7 +175,7 @@ async function confirmOrder() {
         class="step3__actions__back"
         @click="store.prevStep()"
       >
-        ← Орқага
+        ← Назад
       </a-button>
 
       <a-button
@@ -192,7 +192,7 @@ async function confirmOrder() {
         class="step3__actions__confirm"
         @click="confirmOrder"
       >
-        ✓ Тасдиқлаш
+        ✓ Подтвердить
       </a-button>
     </div>
   </div>
@@ -296,9 +296,11 @@ async function confirmOrder() {
     }
 
     &__confirm {
-      flex: 1.8; height: 44px;
+      flex: 1.8; height: 30px;
       background: #224386; border-color: #224386;
       border-radius: 10px; font-size: 13px; font-weight: 600;
+      padding: 3px  20px 0px ;
+      color: #fff;
     }
   }
 }

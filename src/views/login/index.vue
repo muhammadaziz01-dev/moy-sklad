@@ -2,34 +2,12 @@
 import { ref, reactive } from "vue";
 import { useRouter } from "vue-router";
 import { toast } from "vue3-toastify";
-import User from "../../assets/user.svg";
-import Open from "../../assets/open.svg";
-import Clos from "../../assets/clos.svg";
-import LoginImg from "../../assets/login-image.png";
+import User from "@/assets/user.svg";
+import Open from "@/assets/open.svg";
+import Clos from "@/assets/clos.svg";
+import LoginImg from "@/assets/login-image.png";
+import {usersData} from "@/constants/agents/agent-list.js"
 
-
-const testDataUsers =[
-    {
-        id:1,
-        name:"Muhammadaziz",
-        rol: "admin",
-        password:"57163363",
-    },
-    {
-        id:8,
-        name:"Testbek",
-        password : "111111",
-        region : "Ош",
-        rol: "mananger"
-    },
-    {
-        id:8,
-        name:"Testali",
-        password : "222222",
-        region : "Ош",
-        rol: "agent"
-    },
-]
 
 const router = useRouter();
 
@@ -46,7 +24,7 @@ const toggleOpen = () => {
 
 const handleLogin = () => {
   if (user.login.trim() && user.password.trim()) {
-    const foundUser = testDataUsers.find(
+    const foundUser = usersData.find(
       (u) => u.name === user.login.trim() && u.password === user.password.trim()
     );
 

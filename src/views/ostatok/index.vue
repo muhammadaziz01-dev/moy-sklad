@@ -122,9 +122,9 @@ const propsDate = {
 
 // ── Skladlar ro'yxati ────────────────────────────────────────
 const sklads = [
-  { key: "skladAdir", title: "Склад Адир", img: skladAdir },
   { key: "sklad1", title: "Склад 1", img: Sklad1 },
   { key: "sklad2", title: "Склад 2", img: Sklad2 },
+  { key: "skladAdir", title: "Склад Адир", img: skladAdir },
 ];
 
 // Har bir sklad uchun brend ma'lumotlari

@@ -9,7 +9,7 @@ const store = useOrderStore()
 const allProducts = [...dataRTP, ...dataValfex]
 
 const brands = [
-  { label: "Барча", value: "all" },
+  { label: "Все", value: "all" },
   { label: "RTP",   value: "RTP" },
   { label: "VALFEX",value: "VALFEX" },
 ]
@@ -27,7 +27,7 @@ const categories = computed(() => {
     if (!map.has(item.category))
       map.set(item.category, { label: item.categoryName || item.category, value: item.category })
   })
-  return [{ label: "Барча", value: "all" }, ...Array.from(map.values())]
+  return [{ label: "Все", value: "all" }, ...Array.from(map.values())]
 })
 
 const filteredProducts = computed(() => {
@@ -67,7 +67,7 @@ function changeClient() {
           <div class="step2__client-banner__cart">🛒</div>
         </a-badge>
         <button class="step2__client-banner__change" @click="changeClient">
-          ✏️ O'zgartirish
+          ✏️ Изменить
         </button>
       </div>
     </div>
@@ -128,7 +128,7 @@ function changeClient() {
     <!-- Pastki panel -->
     <div v-if="!store.isEmpty" class="step2__footer">
       <div class="step2__footer__info">
-        <span>{{ store.totalItems }} тур маҳсулот</span>
+        <span>{{ store.totalItems }} вид товара</span>
         <span class="step2__footer__info__total">
           {{ store.totalAmount.toLocaleString("ru-RU") }} сом
         </span>
@@ -319,8 +319,9 @@ function changeClient() {
 
     &__btn {
       background: #224386; border-color: #224386;
-      border-radius: 10px; height: 40px;
-      padding: 0 20px; font-size: 14px; font-weight: 600;
+      border-radius: 10px; height: 34px;
+      padding: 7px 20px 0px 20px;  font-size: 14px; font-weight: 600;
+      color: #fff;
     }
   }
 }

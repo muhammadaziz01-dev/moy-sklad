@@ -28,7 +28,7 @@ function formatSum(val) {
 
 <template>
   <div class="step1">
-    <h3 class="step1__title">Клиент танлаш</h3>
+    <h3 class="step1__title">Выбор агента</h3>
 
     <!-- Region filter -->
     <div class="step1__regions">
@@ -39,7 +39,7 @@ function formatSum(val) {
         class="step1__regions__tag"
         @click="store.setRegion(region)"
       >
-        {{ region === "all" ? "Барча" : region }}
+        {{ region === "all" ? "Все" : region }}
       </a-tag>
     </div>
 
@@ -58,7 +58,7 @@ function formatSum(val) {
           <p class="step1__list__card__info__phone">📞 {{ client?.phone }}</p>
         </div>
         <div class="step1__list__card__debt">
-          <span class="step1__list__card__debt__label">Қарз</span>
+          <span class="step1__list__card__debt__label">Задолженность</span>
           <span class="step1__list__card__debt__amount">
             {{ formatSum(client.totalDebt) }} {{ client.currency }}
           </span>

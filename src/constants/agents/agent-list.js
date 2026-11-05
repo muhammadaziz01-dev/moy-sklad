@@ -19,7 +19,7 @@ const agents = [
     //     rol: "admin"
     // },
     {
-        id:2,
+        id:"Нодирбек",
         name:"Нодирбек",
         fulName: "Нодирбек Кадиржан угли",
         img: AgentImg ,
@@ -33,9 +33,9 @@ const agents = [
         rol: "agent"
     },
     {
-        id:3,
+        id:"Али",
         name:"Али",
-        fulName: "Вахапжон  Арипов",
+        fulName: "Арипов Али",
         img: AgentImg ,
         phone: "+996 557 588 831",
         phoneUrl : "tel:+996557588831",
@@ -47,7 +47,7 @@ const agents = [
         rol: "agent"
     },
     {
-        id:4,
+        id:"Вохиджон",
         name:"Вохиджон",
         fulName: "Вохиджон  Арипов",
         img: AgentImg ,
@@ -61,7 +61,7 @@ const agents = [
         rol: "agent"
     },
     {
-        id:5,
+        id:"Умиджон",
         name:"Умиджон",
         fulName: "Умиджон Мамажанов",
         img: AgentImg ,
@@ -75,7 +75,7 @@ const agents = [
         rol: "agent"
     },
     {
-        id:6,
+        id:"Зухриддин",
         name:"Зухриддин",
         fulName: "Зухриддин Маҳаммаджанов",
         img: AgentImg ,
@@ -89,7 +89,7 @@ const agents = [
         rol: "agent"
     },
     {
-        id:7,
+        id:"Шерзодбек",
         name:"Шерзодбек",
         fulName: "Турсунов Шерзодбек",
         img: AgentImg ,
@@ -131,7 +131,7 @@ const agents = [
     //     rol: "agent"
     // },
     {
-        id:10,
+        id:"Бахтиёр",
         name:"Бахтиёр",
         fulName: "Бахтиёр ака(Джалал-Абад)",
         img: AgentImg ,
@@ -145,7 +145,7 @@ const agents = [
         rol: "agent"
     },
     {
-        id:11,
+        id:"Сойибжон",
         name:"Сойибжон",
         fulName: "Сойибжон ака(Джалал-Абад)",
         img: AgentImg ,
@@ -159,7 +159,7 @@ const agents = [
         rol: "agent"
     },
     {
-        id:12,
+        id:"Холмухаммад",
         name:"Холмухаммад",
         fulName: "Холмухаммад ака",
         img: AgentImg ,
@@ -173,7 +173,7 @@ const agents = [
         rol: "manager"
     },
     {
-        id:13,
+        id:"Перемещение",
         name:"Перемещение",
         fulName: "Перемещение cклад ",
         img: AgentImg ,
@@ -201,60 +201,67 @@ export const dataAgents = sortAgentsByDebt(agents)
 
 export const usersData = [
     {
-        id:1,
+        id:"Muhammadaziz",
         name:"Muhammadaziz",
         rol: "admin",
         password:"57163363",
     },
     {
-        id:2,
+        id:"Нодирбек",
         name:"Нодирбек",
         rol: "agent",
         password: "010675",
     },
     {
-        id:3,
+        id:"Али",
         name:"Али",
         password : "588831",
         rol: "agent"
     },
     {
-        id:5,
+        id:"Умиджон",
         name:"Умиджон",
         password : "110046",
         rol: "agent"
     },
     {
-        id:6,
+        id:"Зухриддин",
         name:"Зухриддин",
         password : "161023",
         rol: "agent"
     },
     {
-        id:7,
+        id:"Шерзодбек",
         name:"Шерзодбек",
         password : "745858",
-        rol: "manager"
+        rol: "agent"
     },
     {
-        id:8,
+        id:"Козимжон",
         name:"Козимжон",
         password : "220186",
         region : "Ош",
         rol: "agent"
     },
     {
-        id:9,
+        id:"Хабибуллох",
         name:"Хабибуллох",
         password : "371792",
         region : "Ош",
         rol: "agent"
     },
     {
-        id:12,
+        id:"Холмухаммад",
         name:"Холмухаммад",
         password : "434510",
-        rol: "manager"
+        rol: "boss"
+    },
+    {
+        id:"Asadulloh",
+        name:"Asadulloh",
+        password : "121212",
+        region : "Ош",
+        rol: "worker-sklad2"
     },
 
 
