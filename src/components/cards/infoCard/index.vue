@@ -1,5 +1,5 @@
 <template>
-    <div class="info-card" v-if="userRole !== 'agent'" >
+    <div class="info-card" v-if="userRole  === 'boss' || userRole === 'admin'" >
       <div class="info-card--title">
         <p>Складская стоимость</p>
         <img :src="Sclad" alt="Sclad icon" class="info-card--title--img"  >
