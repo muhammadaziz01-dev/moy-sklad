@@ -2,14 +2,25 @@
 import Navbar from "@/components/header/index.vue";
 import { useOrderStore } from "@/stores/useOrderStore.js";
 import Step1ClientSelect from "@/components/steps/step1/index.vue";
+import Step1Sklad2ClientSelect from "@/components/steps/step1-sklad2/index.vue";
 import Step2ProductSelect from "@/components/steps/step2/index.vue";
+import Step2Sklad2ProductSelect from "@/components/steps/step2-sklad2/index.vue";
 import Step3Nakladnoy from "@/components/steps/step3/index.vue";
+import { ref } from "vue";
+import { useRouter } from "vue-router";
 
 const store = useOrderStore();
 
 const propsDate = {
   title: "Продажа",
   ruot: "/menu",
+};
+
+
+const userRole = ref(localStorage.getItem("userRole") || "");
+const router = useRouter();
+const pushRouter = (link) => {
+  router.push(link);
 };
 
 // Qadam sarlavhalari
@@ -48,10 +59,22 @@ const stepTitles = {
     </div>
 
     <!-- Step content -->
-    <div class="zayavka__content">
-      <transition name="slide" mode="out-in">
+
+    <!-- Admin uchun  -->
+    <div class="zayavka__content"  v-if="userRole === 'admin'">
+      <transition name="slide" mode="out-in"  >
         <Step1ClientSelect v-if="store.step === 1" key="step1" />
         <Step2ProductSelect v-else-if="store.step === 2" key="step2" />
+        <Step3Nakladnoy v-else-if="store.step === 3" key="step3" />
+      </transition>
+    </div>
+
+
+    <!-- Worker sklad 2 uxhun  -->
+    <div class="zayavka__content"  v-if="userRole === 'worker-sklad2'">
+      <transition name="slide" mode="out-in"  >
+        <Step1Sklad2ClientSelect v-if="store.step === 1" key="step1" />
+        <Step2Sklad2ProductSelect v-else-if="store.step === 2" key="step2" />
         <Step3Nakladnoy v-else-if="store.step === 3" key="step3" />
       </transition>
     </div>
