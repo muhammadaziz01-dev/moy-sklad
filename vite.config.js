@@ -17,7 +17,7 @@ export default defineConfig({
       includeAssets: ['apple-touch-icon.png'],
       manifest: {
         name: 'Мой cклад ',
-        short_name: 'Склад ',
+        short_name: 'Мой cклад ',
         start_url: '/',
         display: 'standalone',
         background_color: '#ffffff',
