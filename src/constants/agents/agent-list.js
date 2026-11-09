@@ -260,6 +260,12 @@ export const usersData = [
         password : "121212",
         rol: "worker-sklad2"
     },
+    {
+        id:"Azizbek",
+        name:"Azizbek",
+        password : "571633",
+        rol: "worker-sklad-adir"
+    },
 
 
 ]

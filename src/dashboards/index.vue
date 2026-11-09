@@ -143,6 +143,39 @@
         <p>Настройки</p>
       </div>
     </div>
+
+    <!-- Worker sklad adir uchun  -->
+    <div class="wrapper--menu" v-if="userRole === 'worker-sklad-adir'">
+      <div class="wrapper--menu--card" @click="pushRouter(`/products`)">
+        <img :src="Product" alt="sclad icon" />
+        <p>Продукты</p>
+      </div>
+
+      <div class="wrapper--menu--card" @click="pushRouter(`/sklad-adir`)">
+        <img :src="skladAdir" alt="sclad icon" />
+        <p>Склад адир</p>
+      </div>
+
+      <div class="wrapper--menu--card" @click="pushRouter(`/agents`)">
+        <img :src="AgentsImg" alt="agents icon" />
+        <p>Агенты</p>
+      </div>
+
+      <div class="wrapper--menu--card" @click="pushRouter(`/pradaja`)">
+        <img :src="Truck" alt="truck icon" />
+        <p>Продажа</p>
+      </div>
+
+      <div class="wrapper--menu--card" @click="pushRouter(`/profil`)">
+        <img :src="Person" alt="agents icon" />
+        <p>Профил</p>
+      </div>
+
+      <div class="wrapper--menu--card" @click="pushRouter(`/settings`)">
+        <img :src="Settings" alt="agents icon" />
+        <p>Настройки</p>
+      </div>
+    </div>
     <!-- MUHIM QISM -->
     <router-view />
   </div>

@@ -1,10 +1,17 @@
 <script setup>
 import Navbar from "@/components/header/index.vue";
 import { useOrderStore } from "@/stores/useOrderStore.js";
+
+//  sklad 1
 import Step1ClientSelect from "@/components/steps/step1-sklad1/index.vue";
-import Step1Sklad2ClientSelect from "@/components/steps/step1-sklad2/index.vue";
 import Step2ProductSelect from "@/components/steps/step2-sklad1/index.vue";
+// sklad 2
+import Step1Sklad2ClientSelect from "@/components/steps/step1-sklad2/index.vue";
 import Step2Sklad2ProductSelect from "@/components/steps/step2-sklad2/index.vue";
+// sklad adir
+import Step1SkladAdirClientSelect from "@/components/steps/step1-sklad-adir/index.vue";
+import Step2SkladAdirProductSelect from "@/components/steps/step2-sklad-adir/index.vue";
+
 import Step3Nakladnoy from "@/components/steps/step3/index.vue";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
@@ -75,6 +82,15 @@ const stepTitles = {
       <transition name="slide" mode="out-in"  >
         <Step1Sklad2ClientSelect v-if="store.step === 1" key="step1" />
         <Step2Sklad2ProductSelect v-else-if="store.step === 2" key="step2" />
+        <Step3Nakladnoy v-else-if="store.step === 3" key="step3" />
+      </transition>
+    </div>
+
+     <!-- Worker sklad adir uxhun  -->
+     <div class="zayavka__content"  v-if="userRole === 'worker-sklad-adir'">
+      <transition name="slide" mode="out-in"  >
+        <Step1SkladAdirClientSelect v-if="store.step === 1" key="step1" />
+        <Step2SkladAdirProductSelect v-else-if="store.step === 2" key="step2" />
         <Step3Nakladnoy v-else-if="store.step === 3" key="step3" />
       </transition>
     </div>
