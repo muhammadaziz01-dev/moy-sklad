@@ -2,7 +2,7 @@ import Admin from "@/assets/agents/admin.png";
 import AgentImg from "@/assets/agents/agent-img.png";
 
 
-
+///  sklad adir data agent status
 const agents = [
     // {
     //     id:1,
@@ -240,14 +240,12 @@ export const usersData = [
         id:"Козимжон",
         name:"Козимжон",
         password : "220186",
-        region : "Ош",
         rol: "agent"
     },
     {
         id:"Хабибуллох",
         name:"Хабибуллох",
         password : "371792",
-        region : "Ош",
         rol: "agent"
     },
     {
@@ -260,7 +258,6 @@ export const usersData = [
         id:"Asadulloh",
         name:"Asadulloh",
         password : "121212",
-        region : "Ош",
         rol: "worker-sklad2"
     },
 

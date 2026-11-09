@@ -31,7 +31,7 @@ function formatSum(val) {
     <h3 class="step1__title">Выбор агента</h3>
 
     <!-- Region filter -->
-    <div class="step1__regions">
+    <!-- <div class="step1__regions">
       <a-tag
         v-for="region in regions"
         :key="region"
@@ -41,7 +41,7 @@ function formatSum(val) {
       >
         {{ region === "all" ? "Все" : region }}
       </a-tag>
-    </div>
+    </div> -->
 
     <!-- Klientlar ro'yxati -->
     <div class="step1__list">

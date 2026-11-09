@@ -113,6 +113,14 @@ function changeClient() {
           <span class="step2__grid__card__brand-tag">{{ product.quantity }}</span>
           <span class="step2__grid__card__price">{{ product.price }} сом/{{ product.unit }}</span>
         </div>
+        <!-- Umumiy qoldiq -->
+<div class="step2__grid__card__residual">
+  <span>Общий остаток:</span>
+  <strong>
+    {{ Number(product.allResidual || 0).toLocaleString("ru-RU") }}
+    {{ product.unit }}
+  </strong>
+</div>
         <div class="step2__grid__card__qty">
           <button class="step2__grid__card__qty__btn minus" @click="store.decrement(product)">−</button>
           <input
@@ -275,7 +283,28 @@ function changeClient() {
       &__price-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
       &__brand-tag { font-size: 9px; background: #e8f0fe; color: #224386; padding: 1px 5px; border-radius: 4px; font-weight: 600; }
       &__price { font-size: 11px; font-weight: 700; color: #224386; }
+      
+      // umumiy qoldiq uchun stayl 
+      &__residual {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  margin-bottom: 8px;
+  padding: 5px 6px;
+  border-radius: 6px;
 
+  span {
+    font-size: 9px;
+    color: #525252;
+  }
+
+  strong {
+    font-size: 11px;
+    font-weight: 700;
+    color: #224386;
+  }
+}
       &__qty {
         display: flex; align-items: center; justify-content: center; gap: 4px;
 

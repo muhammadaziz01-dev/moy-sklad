@@ -1,9 +1,9 @@
 <script setup>
 import Navbar from "@/components/header/index.vue";
 import { useOrderStore } from "@/stores/useOrderStore.js";
-import Step1ClientSelect from "@/components/steps/step1/index.vue";
+import Step1ClientSelect from "@/components/steps/step1-sklad1/index.vue";
 import Step1Sklad2ClientSelect from "@/components/steps/step1-sklad2/index.vue";
-import Step2ProductSelect from "@/components/steps/step2/index.vue";
+import Step2ProductSelect from "@/components/steps/step2-sklad1/index.vue";
 import Step2Sklad2ProductSelect from "@/components/steps/step2-sklad2/index.vue";
 import Step3Nakladnoy from "@/components/steps/step3/index.vue";
 import { ref } from "vue";
