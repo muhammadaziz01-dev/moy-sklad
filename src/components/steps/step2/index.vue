@@ -1,66 +1,73 @@
-<!-- views/zayavka/components/Step2ProductSelect.vue -->
+<!-- Step2ProductSelect.vue -->
 <script setup>
-import { computed } from "vue"
-import { useOrderStore } from "@/stores/useOrderStore.js"
-import { dataRTP } from "@/constants/product/product-rtp.js"
-import { dataValfex } from "@/constants/product/product-valfex.js"
+import { computed } from "vue";
+import { useOrderStore } from "@/stores/useOrderStore.js";
+import { dataRTP } from "@/constants/product/product-rtp.js";
+import { dataValfex } from "@/constants/product/product-valfex.js";
 
-const store = useOrderStore()
-const allProducts = [...dataRTP, ...dataValfex]
+const store = useOrderStore();
+const allProducts = [...dataRTP, ...dataValfex];
 
 const brands = [
   { label: "Все", value: "all" },
-  { label: "RTP",   value: "RTP" },
-  { label: "VALFEX",value: "VALFEX" },
-]
+  { label: "RTP", value: "RTP" },
+  { label: "VALFEX", value: "VALFEX" },
+];
 
 const categories = computed(() => {
-  const source = store.selectedBrand === "all"
-    ? allProducts
-    : allProducts.filter(p =>
-        store.selectedBrand === "VALFEX"
-          ? ["VALFEX", "VALFEX PRO", "CALDO"].includes(p.brand)
-          : p.brand === store.selectedBrand
-      )
-  const map = new Map()
-  source.forEach(item => {
+  const source =
+    store.selectedBrand === "all"
+      ? allProducts
+      : allProducts.filter((p) =>
+          store.selectedBrand === "VALFEX"
+            ? ["VALFEX", "VALFEX PRO", "CALDO"].includes(p.brand)
+            : p.brand === store.selectedBrand
+        );
+  const map = new Map();
+  source.forEach((item) => {
     if (!map.has(item.category))
-      map.set(item.category, { label: item.categoryName || item.category, value: item.category })
-  })
-  return [{ label: "Все", value: "all" }, ...Array.from(map.values())]
-})
+      map.set(item.category, {
+        label: item.categoryName || item.category,
+        value: item.category,
+      });
+  });
+  return [{ label: "Все", value: "all" }, ...Array.from(map.values())];
+});
 
 const filteredProducts = computed(() => {
-  let r = allProducts
+  let r = allProducts;
   if (store.selectedBrand !== "all")
-    r = store.selectedBrand === "VALFEX"
-      ? r.filter(p => ["VALFEX", "VALFEX PRO", "CALDO"].includes(p.brand))
-      : r.filter(p => p.brand === store.selectedBrand)
+    r =
+      store.selectedBrand === "VALFEX"
+        ? r.filter((p) => ["VALFEX", "VALFEX PRO", "CALDO"].includes(p.brand))
+        : r.filter((p) => p.brand === store.selectedBrand);
   if (store.selectedCategory !== "all")
-    r = r.filter(p => p.category === store.selectedCategory)
-  return r
-})
+    r = r.filter((p) => p.category === store.selectedCategory);
+  return r;
+});
 
-const getQty  = (id) => store.getQty(id)
-const onInput = (product, e) => store.setQty(product, parseInt(e.target.value) || 0)
+const getQty = (id) => store.getQty(id);
+const onInput = (product, e) => store.setQty(product, parseInt(e.target.value) || 0);
 
 // ── Klientni o'zgartirish ─────────────────────────────────────
-// Savat saqlanadi, faqat klient va step o'zgaradi
+// Savat saqlanadi, klient ismi Step1 da to'ldirilgan holda qoladi
 function changeClient() {
-  store.selectedClient = null
-  store.step = 1
+  store.prevStep();
 }
 </script>
 
 <template>
   <div class="step2">
-
     <!-- Klient banner -->
     <div class="step2__client-banner" v-if="store.selectedClient">
-      <a-avatar :src="store.selectedClient.img" :size="38" />
+      <a-avatar :size="38" style="background: #224386">
+        {{ store.selectedClient.fulName?.charAt(0)?.toUpperCase() }}
+      </a-avatar>
       <div class="step2__client-banner__text">
         <p class="step2__client-banner__text__name">{{ store.selectedClient.fulName }}</p>
-        <p class="step2__client-banner__text__region">📍 {{ store.selectedClient.region }}</p>
+        <p v-if="store.selectedClient.region" class="step2__client-banner__text__region">
+          📍 {{ store.selectedClient.region }}
+        </p>
       </div>
       <div class="step2__client-banner__right">
         <a-badge :count="store.totalItems" color="#224386">
@@ -75,21 +82,27 @@ function changeClient() {
     <!-- Brend filtri -->
     <div class="step2__brands">
       <div
-        v-for="b in brands" :key="b.value"
+        v-for="b in brands"
+        :key="b.value"
         class="step2__brands__btn"
         :class="{ active: store.selectedBrand === b.value }"
         @click="store.setBrand(b.value)"
-      >{{ b.label }}</div>
+      >
+        {{ b.label }}
+      </div>
     </div>
 
     <!-- Kategoriya filtri -->
     <div class="step2__cats">
       <div
-        v-for="cat in categories" :key="cat.value"
+        v-for="cat in categories"
+        :key="cat.value"
         class="step2__cats__item"
         :class="{ active: store.selectedCategory === cat.value }"
         @click="store.setCategory(cat.value)"
-      >{{ cat.label }}</div>
+      >
+        {{ cat.label }}
+      </div>
     </div>
 
     <!-- Mahsulotlar 2 ustun -->
@@ -110,17 +123,30 @@ function changeClient() {
         <div class="step2__grid__card__price-row">
           <span class="step2__grid__card__brand-tag">{{ product.brand }}</span>
           <span class="step2__grid__card__brand-tag">{{ product.quantity }}</span>
-          <span class="step2__grid__card__price">{{ product.price }} сом/{{ product.unit }}</span>
+          <span class="step2__grid__card__price"
+            >{{ product.price }} сом/{{ product.unit }}</span
+          >
         </div>
         <div class="step2__grid__card__qty">
-          <button class="step2__grid__card__qty__btn minus" @click="store.decrement(product)">−</button>
+          <button
+            class="step2__grid__card__qty__btn minus"
+            @click="store.decrement(product)"
+          >
+            −
+          </button>
           <input
             class="step2__grid__card__qty__input"
-            type="number" min="0"
+            type="number"
+            min="0"
             :value="getQty(product.id)"
             @change="onInput(product, $event)"
           />
-          <button class="step2__grid__card__qty__btn plus" @click="store.increment(product)">+</button>
+          <button
+            class="step2__grid__card__qty__btn plus"
+            @click="store.increment(product)"
+          >
+            +
+          </button>
         </div>
       </div>
     </div>
@@ -156,8 +182,20 @@ function changeClient() {
     &__text {
       flex: 1;
       min-width: 0;
-      &__name   { font-size: 13px; font-weight: 600; color: #224386; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-      &__region { font-size: 11px; color: #888; margin: 0; }
+      &__name {
+        font-size: 13px;
+        font-weight: 600;
+        color: #224386;
+        margin: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      &__region {
+        font-size: 11px;
+        color: #888;
+        margin: 0;
+      }
     }
 
     &__right {
@@ -168,7 +206,10 @@ function changeClient() {
       flex-shrink: 0;
     }
 
-    &__cart { font-size: 22px; line-height: 1; }
+    &__cart {
+      font-size: 22px;
+      line-height: 1;
+    }
 
     &__change {
       font-size: 11px;
@@ -181,7 +222,9 @@ function changeClient() {
       cursor: pointer;
       white-space: nowrap;
 
-      &:active { background: #e8f0fe; }
+      &:active {
+        background: #e8f0fe;
+      }
     }
   }
 
@@ -201,7 +244,11 @@ function changeClient() {
       color: #555;
       cursor: pointer;
 
-      &.active { border-color: #224386; background: #224386; color: #fff; }
+      &.active {
+        border-color: #224386;
+        background: #224386;
+        color: #fff;
+      }
     }
   }
 
@@ -223,7 +270,11 @@ function changeClient() {
       overflow: hidden;
       text-overflow: ellipsis;
 
-      &.active { background: #224386; color: #fff; border-color: #224386; }
+      &.active {
+        background: #224386;
+        color: #fff;
+        border-color: #224386;
+      }
     }
   }
 
@@ -237,90 +288,165 @@ function changeClient() {
       flex-direction: column;
       border-radius: 12px;
       padding: 10px 8px 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       background: #fff;
       position: relative;
 
-      &.selected { box-shadow: 0 3px 12px rgba(34,67,134,0.25); border: 1.5px solid #224386; }
+      &.selected {
+        box-shadow: 0 3px 12px rgba(34, 67, 134, 0.25);
+        border: 1.5px solid #224386;
+      }
 
       &__img-wrap {
         width: 100%;
         height: 110px;
-        display: flex; align-items: center; justify-content: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         overflow: hidden;
         margin-bottom: 6px;
         position: relative;
       }
 
-      &__img { width: 100%; height: 100%; object-fit: contain; }
+      &__img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
 
       &__badge {
-        position: absolute; top: 4px; right: 4px;
-        background: #224386; color: #fff;
-        font-size: 10px; font-weight: 700;
-        padding: 2px 6px; border-radius: 10px;
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        background: #224386;
+        color: #fff;
+        font-size: 10px;
+        font-weight: 700;
+        padding: 2px 6px;
+        border-radius: 10px;
       }
 
       &__name {
-        font-size: 10px; font-weight: 500;
-        color: #1a1a2e; text-align: center;
-        margin: 0 0 6px; flex: 1;
+        font-size: 10px;
+        font-weight: 500;
+        color: #1a1a2e;
+        text-align: center;
+        margin: 0 0 6px;
+        flex: 1;
         display: -webkit-box;
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
         overflow: hidden;
       }
 
-      &__price-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-      &__brand-tag { font-size: 9px; background: #e8f0fe; color: #224386; padding: 1px 5px; border-radius: 4px; font-weight: 600; }
-      &__price { font-size: 11px; font-weight: 700; color: #224386; }
+      &__price-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+      }
+      &__brand-tag {
+        font-size: 9px;
+        background: #e8f0fe;
+        color: #224386;
+        padding: 1px 5px;
+        border-radius: 4px;
+        font-weight: 600;
+      }
+      &__price {
+        font-size: 11px;
+        font-weight: 700;
+        color: #224386;
+      }
 
       &__qty {
-        display: flex; align-items: center; justify-content: center; gap: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
 
         &__btn {
-          width: 28px; height: 28px;
-          border: none; border-radius: 6px;
-          font-size: 16px; font-weight: 700;
-          cursor: pointer; display: flex; align-items: center; justify-content: center;
+          width: 28px;
+          height: 28px;
+          border: none;
+          border-radius: 6px;
+          font-size: 16px;
+          font-weight: 700;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
 
-          &.minus { background: #f5f5f5; color: #333; }
-          &.plus  { background: #224386; color: #fff; }
-          &:active { opacity: 0.8; }
+          &.minus {
+            background: #f5f5f5;
+            color: #333;
+          }
+          &.plus {
+            background: #224386;
+            color: #fff;
+          }
+          &:active {
+            opacity: 0.8;
+          }
         }
 
         &__input {
-          width: 38px; height: 28px;
+          width: 38px;
+          height: 28px;
           text-align: center;
-          border: 1.5px solid #d0d0d0; border-radius: 6px;
-          font-size: 13px; font-weight: 600; outline: none;
+          border: 1.5px solid #d0d0d0;
+          border-radius: 6px;
+          font-size: 13px;
+          font-weight: 600;
+          outline: none;
 
           &::-webkit-outer-spin-button,
-          &::-webkit-inner-spin-button { -webkit-appearance: none; }
-          &:focus { border-color: #224386; }
+          &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+          }
+          &:focus {
+            border-color: #224386;
+          }
         }
       }
     }
   }
 
   &__footer {
-    position: fixed; bottom: 0; left: 0; right: 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
     background: #fff;
     padding: 12px 16px;
-    box-shadow: 0 -3px 12px rgba(0,0,0,0.12);
-    display: flex; align-items: center; justify-content: space-between;
+    box-shadow: 0 -3px 12px rgba(0, 0, 0, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     z-index: 100;
 
     &__info {
-      display: flex; flex-direction: column;
-      span { font-size: 12px; color: #888; }
-      &__total { font-size: 15px !important; font-weight: 700; color: #224386 !important; }
+      display: flex;
+      flex-direction: column;
+      span {
+        font-size: 12px;
+        color: #888;
+      }
+      &__total {
+        font-size: 15px !important;
+        font-weight: 700;
+        color: #224386 !important;
+      }
     }
 
     &__btn {
-      background: #224386; border-color: #224386;
-      border-radius: 10px; height: 34px;
-      padding: 7px 20px 0px 20px;  font-size: 14px; font-weight: 600;
+      background: #224386;
+      border-color: #224386;
+      border-radius: 10px;
+      height: 34px;
+      padding: 7px 20px 0px 20px;
+      font-size: 14px;
+      font-weight: 600;
       color: #fff;
     }
   }

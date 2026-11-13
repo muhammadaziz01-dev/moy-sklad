@@ -15,7 +15,7 @@ const propsDate = {
 
 // Qadam sarlavhalari
 const stepTitles = {
-  1: "Выбор клиента",
+  1: "Данные клиента",
   2: "Выбор продукта",
   3: "Накладной",
 };
