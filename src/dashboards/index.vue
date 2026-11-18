@@ -34,6 +34,11 @@
         <p>Продажа</p>
       </div>
 
+      <div class="wrapper--menu--card" @click="pushRouter(`/pradaja`)">
+        <img :src="ChartIcon" alt="truck icon" />
+        <p>Аналитика</p>
+      </div>
+
       <div class="wrapper--menu--card" @click="pushRouter(`/zayafca`)">
         <img :src="Zayafca" alt="truck icon" />
         <p>Заявка</p>
@@ -194,6 +199,7 @@ import skladAdir from "@/assets/skladAdir.svg";
 import Sklad3 from "@/assets/sklad1.png";
 import Sklad2 from "@/assets/sklad2.png";
 import Zayafca from "@/assets/zayafca.svg";
+import ChartIcon from "@/assets/chart.svg";
 
 import { ref } from "vue";
 const propsDate = {

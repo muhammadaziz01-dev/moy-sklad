@@ -3497,12 +3497,6 @@ export const dataRTPAdir = [
 ];
 
 
-
-///  test yakuni 
-
-
-
-
 // RTP praduct list export
 export const allDataRTPAdir = dataRTPAdir
 .filter((itim)=>itim.isActive)

@@ -1,6 +1,7 @@
 <script setup>
 import Navbar from "@/components/header/index.vue";
 import AgentCard from "@/components/cards/agent/index.vue";
+import ChartAgents from "@/components/chart/chartAgent.vue";
 import {dataAgents} from "@/constants/agents/agent-list.js";
 import {ref , computed} from "vue"
 
@@ -21,6 +22,8 @@ const filterData = computed(() => {
 <template>
   <Navbar :props="propsDate" />
   <div class="wrapper-cards" v-for="el in filterData" :key="el?.id">
+    <ChartAgents :agents="filterData" />
+
     <AgentCard :agent="el"  />
   </div>
 </template>

@@ -3,10 +3,13 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import Navbar from "@/components/header/index.vue";
 import AgentCard from "@/components/cards/agent/index.vue";
-import { dataAgents } from "@/constants/agents/agent-list.js";
+// import { dataAgents } from "@/constants/agents/agent-list.js";
+import { dataAgentsTest } from "@/constants/agents/test.js";
 import {dataAgentsSklad1} from "@/constants/agents/agentData-sklad1.js";
 import {dataAgentsSklad2} from "@/constants/agents/agentData-sklad2.js";
-import ChartAgents from "@/components/chart/index.vue";
+// import ChartAgents from "@/components/chart/index.vue";
+import ChartAgents from "@/components/chart/chartAgent.vue";
+
 const propsDate = {
   title: "Агенты",
   ruot: "/menu",
@@ -50,13 +53,12 @@ const pushRouter = (link) => {
     </div>
   </div>
 
-  <!-- Worker sklad 2 uchun  -->
+  <!-- Worker sklad adir uchun  -->
   <div  v-if="userRole === 'worker-sklad-adir'" >
     <Navbar :props="propsDate" />
-    <ChartAgents :agents="dataAgents" />
-    <div class="wrapper-cards" v-for="el in dataAgents" :key="el?.id">
-      <AgentCard :agent="el" />
-    </div>
+    <!-- <ChartAgents :agents="dataAgents" /> -->
+    <ChartAgents :agents="dataAgentsTest"/>
+    
   </div>
 
   
