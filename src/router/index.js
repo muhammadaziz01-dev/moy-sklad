@@ -19,6 +19,7 @@ import Sklad1RTP from "@/views/sklad1/rtp.vue"
 import Sklad1Valfex from "@/views/sklad1/valfex.vue"
 import Sklad2RTP from "@/views/sklad2/rtp.vue"  
 import Sklad2Valfex from "@/views/sklad2/valfex.vue"
+import Analytic from "@/views/analytic/index.vue"
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -88,6 +89,11 @@ const router = createRouter({
       path: "/profil",
       name: "Profil",
       component: Profil,
+    },
+    {
+      path: "/analytic",
+      name: "Analytic",
+      component: Analytic,
     },
     {
       path: "/settings",

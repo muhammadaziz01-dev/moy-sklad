@@ -34,7 +34,7 @@
         <p>Продажа</p>
       </div>
 
-      <div class="wrapper--menu--card" @click="pushRouter(`/pradaja`)">
+      <div class="wrapper--menu--card" @click="pushRouter(`/analytic`)">
         <img :src="ChartIcon" alt="truck icon" />
         <p>Аналитика</p>
       </div>
